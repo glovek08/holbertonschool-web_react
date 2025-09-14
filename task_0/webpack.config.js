@@ -5,10 +5,10 @@ const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin');
 
 module.exports = {
   mode: "development",
-  entry: "./js/main.ts",
-  
+  entry: path.resolve(__dirname, "js", "main.ts"),
+
   devtool: "inline-source-map",
-  
+
   module: {
     rules: [
       {
@@ -16,15 +16,16 @@ module.exports = {
         loader: 'ts-loader',
         options: {
           transpileOnly: true
-        }
+        },
+        exclude: /node_modules/
       }
     ]
   },
-  
+
   resolve: {
     extensions: [".tsx", ".ts", ".js"]
   },
-  
+
   devServer: {
     static: {
       directory: path.join(__dirname, 'dist'),
@@ -32,15 +33,20 @@ module.exports = {
     open: true,
     port: 8080,
   },
-  
+
   plugins: [
-    new ForkTsCheckerWebpackPlugin(),
+    new ForkTsCheckerWebpackPlugin({
+      async: false,
+      typescript: {
+        diagnosticOptions: { semantic: true, syntactic: true }
+      }
+    }),
     new CleanWebpackPlugin(),
     new HtmlWebpackPlugin({
       title: "Development"
     })
   ],
-  
+
   output: {
     filename: "bundle.js",
     path: path.resolve(__dirname, "dist")

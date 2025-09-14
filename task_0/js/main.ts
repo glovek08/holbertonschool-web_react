@@ -33,11 +33,13 @@ const createStudentsTable = () => {
       const theadRow = document.createElement('tr');
       const thName = document.createElement('th');
       const thLocation = document.createElement('th');
+      const thead = document.createElement('thead');
+
       thName.textContent = 'Name';
       thLocation.textContent = 'Location';
+
       theadRow.appendChild(thName);
       theadRow.appendChild(thLocation);
-      const thead = document.createElement('thead');
       thead.appendChild(theadRow);
       studentsTable.appendChild(thead);
     }
