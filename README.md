@@ -15,6 +15,8 @@ TypeScript concepts: types, interfaces, classes, functions, DOM handling, generi
     - [Resources](#resources)
     - [Webpack](#webpack)
       - [Webpack tutorial 👈👈](#webpack-tutorial-)
+      - [Note!](#note)
+    - [TypeScript checker](#typescript-checker)
 
 
 ### Project Notes
@@ -51,11 +53,65 @@ task_#/
 I've already worked with webpack, check it out, it's very detailed and guided :D
 #### [Webpack tutorial](https://github.com/glovek08/The_Odin_Project-Tutorials/tree/main/webpack-practice) 👈👈
 
-* Run webpack:
-  ```bash
-  $ npx webpack
-  ```
+#### <i>Note!</i>
+
+Modify the provided webpack config to enable more verbose `ForkTsCheckerWebpackPlugin`:
+```js
+// ... Existing code
+new ForkTsCheckerWebpackPlugin({
+  async: false,
+  typescript: {
+    diagnosticOptions: { semantic: true, syntactic: true }
+  }
+}), // Existing code...
+```
+Also the provided config compiles `node_modules`, exclude it:
+```js
+ module: {
+    rules: [
+      {
+        test: /\.tsx?$/,
+        loader: 'ts-loader',
+        options: {
+          transpileOnly: true
+        },
+        exclude: /node_modules/ // add this
+      }
+    ]
+  },
+```
+* Normally you'd run webpack with `npx` but for this task run with `npm`:
+```bash
+$ npm run build
+```
 * Run webpack server
-  ```bash
-  $ npx webpack serve
-  ```
+```bash
+$ npm run start-dev
+```
+
+* `npm run build`:
+  Runs the "build" script from package.json. Example: if package.json has "build": "webpack", npm runs that exact command.
+  Adds node_modules/.bin to PATH, exposes npm lifecycle env vars (npm_lifecycle_event, etc.), and runs any prebuild/postbuild scripts.
+  Safe, reproducible for project-level workflows and CI.
+
+*  `npx webpack`:
+  Runs the webpack binary directly. npx prefers the local node_modules/.bin/webpack; if not found, it can fetch a package temporarily from the registry.
+  Good for ad-hoc invocation or when you don’t want/need a package.json script.
+  Example: npx webpack --config webpack.config.js
+  
+* Use npx for direct testing or if you need to run a specific webpack CLI commmand with extra verbosity:
+```bash
+$ npx webpack --config webpack.config.js --stats-error-details
+```
+
+* Run Jest tests:
+```bash
+$ npm run test
+```
+
+### TypeScript checker
+
+Run the TypeScript checker:
+```bash
+$ npx tsc --noEmit
+```
