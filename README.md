@@ -17,6 +17,8 @@ TypeScript concepts: types, interfaces, classes, functions, DOM handling, generi
       - [Webpack tutorial 👈👈](#webpack-tutorial-)
       - [Note!](#note)
     - [TypeScript checker](#typescript-checker)
+  - [Tasks](#tasks)
+    - [Task 1](#task-1)
 
 
 ### Project Notes
@@ -115,3 +117,8 @@ Run the TypeScript checker:
 ```bash
 $ npx tsc --noEmit
 ```
+
+
+## Tasks
+### Task 1
+<img src="assets/task_1-output.png" alt="Task 1 Output">
