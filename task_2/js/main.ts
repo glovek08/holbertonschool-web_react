@@ -171,19 +171,19 @@ function renderOutputs(): void {
   outputSection.id = "test-output";
   document.documentElement.appendChild(outputSection);
 
-  displayOutput("TASK 5");
-  displayOutput(`Is teacher correctly implemented: ${assert.strictEqual(createEmployee(200).constructor.name, "Teacher")}`);
-  displayOutput(`Director test: ${createEmployee(1000).constructor.name}`);
-  displayOutput(`String method test: ${createEmployee('$500').toString()}`);
+  displayOutput("TASK 5", 'heading');
+  displayOutput(`Is teacher correctly implemented: ${assert.strictEqual(createEmployee(200).constructor.name, "Teacher")}`, 'p');
+  displayOutput(`Director test: ${createEmployee(1000).constructor.name}`, 'p');
+  displayOutput(`String method test: ${createEmployee('$500').toString()}`, 'p');
 
-  displayOutput("\nTASK 6");
-  displayOutput(executeWork(readOnlyTeacher));
-  displayOutput(executeWork(readOnlyDirector));
+  displayOutput("\nTASK 6", 'heading');
+  displayOutput(executeWork(readOnlyTeacher), 'p');
+  displayOutput(executeWork(readOnlyDirector), 'p');
 
-  displayOutput("\nTASK 7");
+  displayOutput("\nTASK 7", 'heading');
   const teacher = createEmployee(200);
   if (teacher instanceof Teacher) {
-    displayOutput(`What is teacher teaching: ${assert.strictEqual(teachClass('Math'), 'Teaching Math')}`);
+    displayOutput(`What is teacher teaching: ${assert.strictEqual(teachClass('Math'), 'Teaching Math')}`, 'p');
   }
 }
 

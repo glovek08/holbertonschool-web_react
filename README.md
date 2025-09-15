@@ -22,6 +22,10 @@ TypeScript concepts: types, interfaces, classes, functions, DOM handling, generi
     - [Task 5: Advanced types Part 1](#task-5-advanced-types-part-1)
     - [Task 6: Creating functions specific to employees](#task-6-creating-functions-specific-to-employees)
     - [Task 7: String literal types](#task-7-string-literal-types)
+    - [Display Module](#display-module)
+      - [Basic Usage](#basic-usage)
+      - [Requirements](#requirements)
+      - [Styling](#styling)
 
 
 ### Project Notes
@@ -178,4 +182,44 @@ function executeWork(employee: RO_HumanWorker): string {
 <img src="assets/task_6-output.png">
 
 ### Task 7: String literal types
-In this task, I've implemented a `display` module that will render the logs in the HTML page.
+In this task, I've implemented a `display` module that will render the logs in the HTML page, why you might ask? I was tired of looking at the goddam browser console!! AND I HATE NODE!
+
+So having a small laptop I'm constained to split screen, so i wanted to have the browser in one side and the IDE in the other. CTRL+S and Voilá.
+
+I learned a good amount of stuff just working with typescript and webpack in this implementation.
+
+```ts
+displayOutput("TASK 5", 'heading');
+displayOutput(`Is teacher correctly implemented: ${assert.strictEqual(createEmployee(200).constructor.name, "Teacher")}`, 'p');
+displayOutput(`Director test: ${createEmployee(1000).constructor.name}`, 'p');
+displayOutput(`String method test: ${createEmployee('$500').toString()}`, 'p');
+```
+
+
+### Display Module
+
+This is a simple TypeScript module to display content on the webpage with consistent styling. It supports two arguments, the output text and an optional element type (`heading` or `p`), then it will style it accordingly.
+
+<img src="assets/project_displayer.png" alt="Logs rendered in the browser">
+
+#### Basic Usage
+```typescript
+import { displayOutput } from './js/display';
+
+// Regular text
+displayOutput('Hello world');
+
+// Section heading
+displayOutput('My Section', 'heading');
+```
+
+#### Requirements
+- Add this div to your HTML:
+```html
+<div id="test-output"></div>
+```
+
+#### Styling
+- Headings: Dark background, light text
+- Paragraphs: Regular text with spacing
+- Container: Centered card layout
