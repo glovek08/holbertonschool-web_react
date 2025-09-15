@@ -1,3 +1,6 @@
+// import assert from "assert";
+import { create } from "domain";
+
 interface DirectorInterface {
   workFromHome(): string,
   getCoffeeBreak(): string,
@@ -36,7 +39,7 @@ class Teacher implements TeacherInterface {
     return 'Teacher';
   }
 }
-type HumanWorker =  Teacher | Director;
+type HumanWorker = Teacher | Director;
 type Salary = number | string;
 
 const createEmployee = (salary: Salary): HumanWorker => {
@@ -45,10 +48,20 @@ const createEmployee = (salary: Salary): HumanWorker => {
 
 
 //Expected result:
+const assert = {
+  strictEqual(actual: any, expected: any, message?: string) {
+    if (actual !== expected) {
+      return (message || `Assertion failed: ${actual} !== ${expected}`);
+    }
+    else {
+      return ("Assertion successful");
+    }
+  }
+};
 
-console.log(createEmployee(200).constructor.name); // Using the prototype method
+console.log(`Is teacher correctly implemented: ${assert.strictEqual(createEmployee(200).constructor.name, "Teacher")}`);
 // Teacher
-console.log(createEmployee(1000).constructor.name);
+console.log(createEmployee(1000).constructor.name);  // Using the prototype method
 // Director
 console.log(createEmployee('$500').toString()); // using its own method.
 // Director

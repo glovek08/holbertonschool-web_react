@@ -18,7 +18,8 @@ TypeScript concepts: types, interfaces, classes, functions, DOM handling, generi
       - [Note!](#note)
     - [TypeScript checker](#typescript-checker)
   - [Tasks](#tasks)
-    - [Task 1](#task-1)
+    - [Task 1: Let's build a Teacher interface, Extending the Teacher class,  Writing a class.](#task-1-lets-build-a-teacher-interface-extending-the-teacher-class--writing-a-class)
+    - [Task 5: Advanced types Part 1](#task-5-advanced-types-part-1)
 
 
 ### Project Notes
@@ -120,6 +121,33 @@ $ npx tsc --noEmit
 
 
 ## Tasks
-### Task 1
+### Task 1: Let's build a Teacher interface, Extending the Teacher class,  Writing a class.
 <img src="assets/task_1-output.png" alt="Task 1 Output">
 <i>*Ignore the warnings</i>
+
+### Task 5: Advanced types Part 1
+
+For this task I've used `type` to define a complex type:
+```ts
+type HumanWorker = Teacher | Director;
+type Salary = number | string;
+```
+Which then is passed to the type checker:
+```ts
+const createEmployee = (salary: Salary): HumanWorker => {
+  return typeof salary === "number" && salary < 500 
+      ? new Teacher()
+      : new Director();
+}
+```
+Also to extend some of the debugging logs, I've used `assert` to test with Node.js, since assert doesn't work in the browser, I've also used a <a href="https://developer.mozilla.org/en-US/docs/Glossary/Polyfill"><strong>polyfill</strong></a> to overwrite `assert.StrictEqual`:
+
+```ts
+const assert = {
+  strictEqual(actual: any, expected: any, message?: string) {
+    if (actual !== expected) {
+      throw new Error(message || `Assertion failed: ${actual} !== ${expected}`);
+    }
+  }
+};
+```
