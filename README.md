@@ -122,3 +122,4 @@ $ npx tsc --noEmit
 ## Tasks
 ### Task 1
 <img src="assets/task_1-output.png" alt="Task 1 Output">
+<i>*Ignore the warnings</i>
