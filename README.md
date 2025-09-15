@@ -20,6 +20,7 @@ TypeScript concepts: types, interfaces, classes, functions, DOM handling, generi
   - [Tasks](#tasks)
     - [Task 1: Let's build a Teacher interface, Extending the Teacher class,  Writing a class.](#task-1-lets-build-a-teacher-interface-extending-the-teacher-class--writing-a-class)
     - [Task 5: Advanced types Part 1](#task-5-advanced-types-part-1)
+    - [Task 6: Creating functions specific to employees](#task-6-creating-functions-specific-to-employees)
 
 
 ### Project Notes
@@ -146,8 +147,18 @@ Also to extend some of the debugging logs, I've used `assert` to test with Node.
 const assert = {
   strictEqual(actual: any, expected: any, message?: string) {
     if (actual !== expected) {
-      throw new Error(message || `Assertion failed: ${actual} !== ${expected}`);
+      return (message || `Assertion failed: ${actual} !== ${expected}`);
+    }
+    else {
+      return ("Assertion successful");
     }
   }
 };
 ```
+### Task 6: Creating functions specific to employees
+
+For this task I wanted to experiment a little bit with read-only. So the type predicator `isDirector` is commented out to use the previously implemented `toString()` class methods and directly checking the class name.
+
+Creating new read-only class instances and checking them directly within `executeWork`;
+
+<img src="assets/task_6-output.png">
