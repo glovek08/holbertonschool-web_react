@@ -33,6 +33,7 @@
 
 // import assert from "assert"; <- Uncomment if you want to use node.js. Remove the current assert.
 import { create } from "domain";
+import { displayOutput } from "./display";
 
 
 interface DirectorInterface {
@@ -125,8 +126,8 @@ type RO_HumanWorker = Readonly<HumanWorker>;
 //  but it's there. FTR it's cleaner, safer and more performant.
 
 function executeWork(employee: RO_HumanWorker): string {
-  return employee.toString() === 'Director' ? 
-    `Director: ${(employee as Readonly<Director>).workDirectorTasks()}` : 
+  return employee.toString() === 'Director' ?
+    `Director: ${(employee as Readonly<Director>).workDirectorTasks()}` :
     `Teacher: ${(employee as Readonly<Teacher>).workTeacherTasks()}`;
 }
 
@@ -135,3 +136,55 @@ const readOnlyDirector: Readonly<Director> = new Director();
 
 console.log(executeWork(readOnlyTeacher));
 console.log(executeWork(readOnlyDirector));
+
+
+// *********************** TASK 7 ********************************
+
+// Write a String literal type named Subjects allowing a
+// variable to have the value Math or History only. Write a function named teachClass:
+//     it takes todayClass as an argument
+//     it will return the string Teaching Math if todayClass is Math
+//     it will return the string Teaching History if todayClass is History
+
+console.log("TASK 7");
+
+type Subjects = 'Math' | 'History';
+
+function teachClass(todayClass: Subjects): string {
+  return `Teaching ${todayClass}`;
+}
+
+const teacher = createEmployee(200);
+
+if (teacher instanceof Teacher) {
+  console.log("Teacher is teaching?: " + assert.strictEqual(teachClass('Math'), 'Teaching Math'));
+} else {
+  console.log("teacher is not student");
+}
+
+
+
+// This will render all outputs also in the page.
+
+function renderOutputs(): void {
+  const outputSection = document.createElement("section");
+  outputSection.id = "test-output";
+  document.documentElement.appendChild(outputSection);
+
+  displayOutput("TASK 5");
+  displayOutput(`Is teacher correctly implemented: ${assert.strictEqual(createEmployee(200).constructor.name, "Teacher")}`);
+  displayOutput(`Director test: ${createEmployee(1000).constructor.name}`);
+  displayOutput(`String method test: ${createEmployee('$500').toString()}`);
+
+  displayOutput("\nTASK 6");
+  displayOutput(executeWork(readOnlyTeacher));
+  displayOutput(executeWork(readOnlyDirector));
+
+  displayOutput("\nTASK 7");
+  const teacher = createEmployee(200);
+  if (teacher instanceof Teacher) {
+    displayOutput(`What is teacher teaching: ${assert.strictEqual(teachClass('Math'), 'Teaching Math')}`);
+  }
+}
+
+document.addEventListener('DOMContentLoaded', renderOutputs);

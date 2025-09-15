@@ -21,6 +21,7 @@ TypeScript concepts: types, interfaces, classes, functions, DOM handling, generi
     - [Task 1: Let's build a Teacher interface, Extending the Teacher class,  Writing a class.](#task-1-lets-build-a-teacher-interface-extending-the-teacher-class--writing-a-class)
     - [Task 5: Advanced types Part 1](#task-5-advanced-types-part-1)
     - [Task 6: Creating functions specific to employees](#task-6-creating-functions-specific-to-employees)
+    - [Task 7: String literal types](#task-7-string-literal-types)
 
 
 ### Project Notes
@@ -161,4 +162,20 @@ For this task I wanted to experiment a little bit with read-only. So the type pr
 
 Creating new read-only class instances and checking them directly within `executeWork`;
 
+```ts
+type RO_HumanWorker = Readonly<HumanWorker>;
+
+const readOnlyTeacher: Readonly<Teacher> = new Teacher();
+const readOnlyDirector: Readonly<Director> = new Director();
+
+function executeWork(employee: RO_HumanWorker): string {
+  return employee.toString() === 'Director' ? 
+    `Director: ${(employee as Readonly<Director>).workDirectorTasks()}` : 
+    `Teacher: ${(employee as Readonly<Teacher>).workTeacherTasks()}`;
+}
+```
+
 <img src="assets/task_6-output.png">
+
+### Task 7: String literal types
+In this task, I've implemented a `display` module that will render the logs in the HTML page.
