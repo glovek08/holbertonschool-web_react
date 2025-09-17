@@ -164,13 +164,10 @@ if (teacher instanceof Teacher) {
 
 
 
+
 // This will render all outputs also in the page.
 
 function renderOutputs(): void {
-  const outputSection = document.createElement("section");
-  outputSection.id = "test-output";
-  document.documentElement.appendChild(outputSection);
-
   displayOutput("TASK 5", 'heading');
   displayOutput(`Is teacher correctly implemented: ${assert.strictEqual(createEmployee(200).constructor.name, "Teacher")}`, 'p');
   displayOutput(`Director test: ${createEmployee(1000).constructor.name}`, 'p');

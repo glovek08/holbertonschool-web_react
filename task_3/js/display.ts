@@ -1,5 +1,5 @@
 
-type ElementType = 'p' | 'heading';
+type ElementType = 'p' | 'heading' | 'code';
 
 export function displayOutput(output: string, elementType: ElementType = 'p'): void {
   const outputSection = document.createElement("section");
@@ -14,6 +14,14 @@ export function displayOutput(output: string, elementType: ElementType = 'p'): v
     newEl.style.padding = '10px 5%';
     newEl.style.marginTop = '20px';
     newEl.style.fontWeight = '800';
+  } else if (elementType === 'code') {
+    newEl = document.createElement('pre');
+    newEl.style.backgroundColor = '#f5f5f5';
+    newEl.style.padding = '10px';
+    newEl.style.border = '1px solid #ddd';
+    newEl.style.borderRadius = '4px';
+    newEl.style.fontFamily = 'monospace';
+    newEl.style.overflow = 'auto';
   } else {
     newEl = document.createElement('p');
     newEl.style.color = '#34495e';
