@@ -22,6 +22,7 @@ TypeScript concepts: types, interfaces, classes, functions, DOM handling, generi
     - [Task 5: Advanced types Part 1](#task-5-advanced-types-part-1)
     - [Task 6: Creating functions specific to employees](#task-6-creating-functions-specific-to-employees)
     - [Task 7: String literal types](#task-7-string-literal-types)
+    - [Task 9: Namespace \& Declaration merging](#task-9-namespace--declaration-merging)
     - [Display Module](#display-module)
       - [Basic Usage](#basic-usage)
       - [Requirements](#requirements)
@@ -195,10 +196,42 @@ displayOutput(`Director test: ${createEmployee(1000).constructor.name}`, 'p');
 displayOutput(`String method test: ${createEmployee('$500').toString()}`, 'p');
 ```
 
+### Task 9: Namespace & Declaration merging
+
+For this task, I had to use triple-slash directives for namespace merging, but there's a better approach for most TypeScript projects following ES effort to standardize everything (Which is great :D):
+
+**Better approach using tsconfig.json:**
+```json
+{
+  "compilerOptions": {
+    // ...usual options...
+  },
+  "include": [
+    "js/**/*.ts"
+  ]
+}
+```
+
+With this configuration, TypeScript automatically includes all files in the project and resolves dependencies without needing triple-slash references. This is:
+- More maintainable
+- Less error-prone
+- Easier to scale
+- Recommended by the TypeScript team
+
+**When are triple-slash references still needed?**
+- Only when specifically merging declarations for the same namespace across multiple files
+- For certain legacy codebases
+- For specialized declaration file scenarios
+
+Make sure to check `task_4/tsconfig.ts` to see how I implemented a better way of handling namespacing.
+
+With that being said, I did left the commented approach using <strong>triple-dash directive</strong>
 
 ### Display Module
 
 This is a simple TypeScript module to display content on the webpage with consistent styling. It supports two arguments, the output text and an optional element type (`heading` or `p`), then it will style it accordingly.
+
+That being 
 
 <img src="assets/project_displayer.png" alt="Logs rendered in the browser">
 

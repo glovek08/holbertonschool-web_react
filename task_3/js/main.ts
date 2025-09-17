@@ -1,8 +1,10 @@
-/// <reference path="./crud.d.ts">
+/// <reference path="./crud.d.ts" />
 
-// Triple dash directives are OUTDATED. I'm leaving it for the project.
+// Triple dash directives are outdated. I'm leaving it for the project.
 // TypeScript automatically handles the type declarations 
+// It's only used for namespacing.
 // from crud.d.ts when crud.js is imported.
+// Always use ES modules.
 
 import { displayOutput } from "./display";
 import { RowID, RowElement } from "./interface";
